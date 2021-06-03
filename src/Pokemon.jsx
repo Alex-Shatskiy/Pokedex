@@ -41,7 +41,7 @@ const Pokemon = (props) => {
         <></>
       ) : (
         <>
-          <Typography>{`${id}. ${toFirstCharUppercase(name)}`}</Typography>
+          <Typography>{`#${id}. ${toFirstCharUppercase(name)}`}</Typography>
           <CardMedia
             style={{ height: "150px", width: "150px" }}
             image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
