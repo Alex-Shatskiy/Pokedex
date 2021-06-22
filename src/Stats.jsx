@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react"
-import { CardMedia, Typography, Tab, Tabs, Box } from "@material-ui/core"
+import { CardMedia, Typography, Tab, Tabs, Box, Grid } from "@material-ui/core"
 import { SignalCellularNoSimOutlined } from "@material-ui/icons"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles((theme) => ({
+  text: {
+    fontSize: "20px",
+    fontWeight: "450",
+    marginBottom: "5px",
+  },
+  stats: {
+    martinTop: "20px",
+  },
+}))
 
 const Stats = (props) => {
+  const classes = useStyles()
+
   const { pokemonStats } = props
-  console.log(pokemonStats)
 
   const totalStats = (stats) => {
     const total = pokemonStats.reduce((sum, current) => {
@@ -19,7 +32,7 @@ const Stats = (props) => {
     const { name } = stat
     return (
       <>
-        <Typography>
+        <Typography className={classes.text}>
           {name}: {base_stat}
         </Typography>
       </>
@@ -32,10 +45,14 @@ const Stats = (props) => {
         <></>
       ) : (
         <>
-          {pokemonStats.map((diffrentStat) => {
-            return mapTypeStats(diffrentStat)
-          })}
-          <Typography>Total: {totalStats()}</Typography>
+          <Grid item xs={4} className={classes.stats}>
+            {pokemonStats.map((diffrentStat) => {
+              return mapTypeStats(diffrentStat)
+            })}
+            <Typography className={classes.text}>
+              Total: {totalStats()}
+            </Typography>
+          </Grid>
         </>
       )}
     </>
